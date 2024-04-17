@@ -6,14 +6,14 @@ const Navbar = () => {
   const navItems = {
     'About': '/home',
     'Services': '/services',
-    'Log In': '/home',
-    'Register': '/home'
+    'Log In': '/login',
+    'Register': '/register'
   };
 
   return (
     <div className='navbar'>
       <div className="title">
-        Dark Phoenix
+        ROUBUSTA 6.0
       </div>
       <ul className="items">
         {Object.entries(navItems).map(([text, link], index) => (

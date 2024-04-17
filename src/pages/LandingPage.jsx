@@ -7,7 +7,7 @@ const LandingPage = () => {
     <div className='landing_page'>
         <section className="left">
           <h1 className="title">
-            Ambu Bag
+            Health Mate
           </h1>
           <p className="description">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi rerum architecto laboriosam, cupiditate, omnis ullam quaerat voluptatum illo numquam inventore nesciunt eos aliquid consectetur deleniti odit at, sed iusto harum.

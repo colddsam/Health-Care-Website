@@ -1,8 +1,9 @@
 .navbar{
     height: 10%;
+
     width: 100%;
     background-color: white;
-    position: absolute;
+    position: fixed;
     top: 0px;
     display: flex;
     flex-direction: row;

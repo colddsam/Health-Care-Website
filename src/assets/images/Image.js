@@ -5,6 +5,7 @@ import thermo from './thermo.png';
 import spo2 from './spo2.png';
 import heartrate from './heartrate.png';
 import ecg from './ecg.png';
+import profile from './profile.avif'
 
-export {doctorImage,proto1,proto2,heartrate,thermo,ecg,spo2};
+export {doctorImage,proto1,proto2,heartrate,thermo,ecg,spo2,profile};
 
