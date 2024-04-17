@@ -10,7 +10,7 @@ const LandingPage = () => {
             Health Mate
           </h1>
           <p className="description">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi rerum architecto laboriosam, cupiditate, omnis ullam quaerat voluptatum illo numquam inventore nesciunt eos aliquid consectetur deleniti odit at, sed iusto harum.
+             It is a cutting-edge project designed to revolutionize the way individuals approach and manage their health and wellness journey. At its core, HealthMate is a comprehensive platform that leverages advanced technology to provide tailored support, guidance, and resources for users to achieve their health goals.
           </p>
         <button className='services_button'>
           <Link to='/services' className='linkservice'>Our Services</Link>

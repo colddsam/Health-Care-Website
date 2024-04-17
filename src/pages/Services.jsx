@@ -30,7 +30,7 @@ const Services = () => {
         <img className='proto' src={proto2} alt="proto2" />
       </section>
       <p className="description">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. In, voluptas pariatur repellendus dolorum dolore impedit accusamus rem accusantium illum eos facilis suscipit reiciendis ullam soluta nisi aliquam ipsam. Inventore, nihil?
+        Our device monitor various physical parameters like Blood Oxygen Level, Temperature, ECG, Heart Rate in real time through our sensors and according to the data it automatically provide the necessary pressure of oxygen if needed.
       </p>
         <ul className="facility_sec">
         {
