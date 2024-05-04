@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../styles/Register.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+const apiUrl=process.env.REACT_APP_API_KEY
 const Register = () => {
     const navigate = useNavigate();
     const [name, setName] = useState('');
@@ -21,7 +21,7 @@ const Register = () => {
             bloodGroup: blood
         };
 
-        axios.post('https://health-care-system-g2rl.onrender.com/adduser/', userData)
+        axios.post(`${apiUrl}/adduser/`, userData)
             .then((response) => {
                 console.log(JSON.stringify(response.data));
                 navigate(`/`);

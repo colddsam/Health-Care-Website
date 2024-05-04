@@ -7,7 +7,7 @@ import '../styles/User.css';
 import LineChart from '../components/LineChart';
 import { profile } from '../assets/images/Image';
 Chart.register(CategoryScale);
-
+const apiUrl=process.env.REACT_APP_API_KEY
 const User = () => {
     const { id } = useParams();
     const [data, setData] = useState(null);
@@ -17,13 +17,13 @@ const User = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const userResponse = await axios.get(`https://health-care-system-g2rl.onrender.com/find/?_id=${id}`);
+                const userResponse = await axios.get(`${apiUrl}/find/?_id=${id}`);
                 setUser(userResponse.data);
             } catch (error) {
                 console.log("Error fetching user data:", error);
             }
             try {
-                const dataResponse = await axios.get(`https://health-care-system-g2rl.onrender.com/show/?_id=${id}`);
+                const dataResponse = await axios.get(`${apiUrl}/show/?_id=${id}`);
                 setData(dataResponse.data);
             } catch (error) {
                 console.log("Error fetching user's health data:", error);
@@ -35,7 +35,7 @@ const User = () => {
 
     const addDev = async () => {
         try {
-            const response = await axios.post(`https://health-care-system-g2rl.onrender.com/assign/?deviceid=${device}&clientid=${id}`);
+            const response = await axios.post(`${apiUrl}/assign/?deviceid=${device}&clientid=${id}`);
             console.log(JSON.stringify(response.data));
             alert('Device Assigned');
         } catch (error) {
