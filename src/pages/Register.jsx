@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../styles/Register.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import PopUp from '../components/PopUp';
 const apiUrl=process.env.REACT_APP_API_KEY
 const Register = () => {
     const navigate = useNavigate();
@@ -10,8 +11,9 @@ const Register = () => {
     const [ph, setPh] = useState('');
     const [blood, setBlood] = useState('');
     const [age, setAge] = useState('');
-
+    const [loading, setLoading] = useState(false);
     const addUser = (e) => {
+        setLoading(true);
         e.preventDefault(); 
         const userData = {
             name: name,
@@ -23,7 +25,7 @@ const Register = () => {
 
         axios.post(`${apiUrl}/adduser/`, userData)
             .then((response) => {
-                console.log(JSON.stringify(response.data));
+                setLoading(false);
                 navigate(`/`);
             })
             .catch((error) => {
@@ -33,6 +35,9 @@ const Register = () => {
 
     return (
         <div className='register'>
+            {
+                loading?<PopUp/>:''
+            }
             <form className='register_form' onSubmit={addUser}>
                 <input type="text" id='name' value={name} className='register_det' placeholder='Enter Name' onChange={(e) => setName(e.target.value)} />
                 <input type="text" id='email' value={email} className='register_det' placeholder='Enter Email Address' onChange={(e) => setEmail(e.target.value)} />

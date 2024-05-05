@@ -9,7 +9,10 @@
     overflow: hidden;
     position: absolute;
     bottom: 0px;
+    
 }
+
+
 
 
 .landing_page .left{
@@ -86,3 +89,49 @@
     text-decoration: none;
     color: white;
 }
+
+
+@media screen and (max-width: 768px) {
+    .landing_page {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100vw;
+        height: auto;
+        overflow: scroll;
+        position: relative;
+        top: 13%;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .landing_page .left {
+        height: auto;
+        width: 80%;
+        padding: 0px;
+    }
+
+
+    .landing_page .left .title{
+        font-size: 35px;
+        margin-bottom: 5px;
+
+    }
+
+    .landing_page .left .description{
+        font-weight: 500;
+        margin-bottom: 15px;
+        }
+
+    .landing_page .right {
+        width: 100vw;
+        height: auto;
+    }
+
+    .landing_page .right .doctor_image {
+        height: auto;
+        width: 85%;
+
+    }
+}
+

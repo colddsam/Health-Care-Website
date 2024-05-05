@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import Chart from "chart.js/auto";
-import { CategoryScale } from "chart.js/auto";
+import Chart,{ CategoryScale } from "chart.js/auto";
 import '../styles/User.css';
 import LineChart from '../components/LineChart';
 import { profile } from '../assets/images/Image';
+import PopUp from '../components/PopUp';
 Chart.register(CategoryScale);
 const apiUrl=process.env.REACT_APP_API_KEY
 const User = () => {
@@ -70,6 +70,9 @@ useEffect(() => {
 
     return (
         <div className='user'>
+            {
+                isNaN(user)?'':<PopUp/>
+            }
             <section className="profile_sec">
                 <div className="profile_image">
                     <img className="img" src={profile} alt='profile' />
