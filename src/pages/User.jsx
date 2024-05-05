@@ -13,6 +13,8 @@ const User = () => {
     const [data, setData] = useState(null);
     const [user, setUser] = useState(null);
     const [device, setDevice] = useState('');
+    const delayMS = 10000;
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -22,16 +24,26 @@ const User = () => {
             } catch (error) {
                 console.log("Error fetching user data:", error);
             }
-            try {
-                const dataResponse = await axios.get(`${apiUrl}/show/?_id=${id}`);
-                setData(dataResponse.data);
-            } catch (error) {
-                console.log("Error fetching user's health data:", error);
-            }
         };
         fetchData();
         
     }, [id]);
+
+useEffect(() => {
+    const fetchData = async () => {
+        try {
+            const dataResponse = await axios.get(`${apiUrl}/show/?_id=${id}`);
+            setData(dataResponse.data);
+        } catch (error) {
+            console.log("Error fetching user's health data:", error);
+        }
+    };
+
+    const interval = setInterval(fetchData, delayMS);
+    
+    return () => clearInterval(interval);
+}, [id]);
+
 
     const addDev = async () => {
         try {
