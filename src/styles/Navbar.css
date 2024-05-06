@@ -7,13 +7,22 @@
     top: 0px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     filter: drop-shadow(rgba(0, 0, 0, 0.25) 1px 1px 10px);
     z-index: 1000;
 }
 
-.navbar .title{
+.navbar .sectionf{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .sectionf .title{
     height: 100%;
     width: 30%;
     display: flex;
@@ -27,7 +36,7 @@
     padding-left: 60px;
 }
 
-.navbar .items{
+.navbar .sectionf .items{
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -37,7 +46,7 @@
     list-style: none;
 }
 
-.navbar .items .item{
+.navbar .sectionf .items .item{
     padding-right: 60px;
     text-decoration: none;
     outline: none;
@@ -51,7 +60,7 @@
     align-items: center;
     cursor: pointer;
 }
-.navbar .items .item .link:hover{
+.navbar .sectionf .items .item .link:hover{
     color: #259AFC;
 }
 
@@ -64,15 +73,112 @@
     color: black;
 }
 
-@media screen and (max-width:720px) {
-    .navbar .title{
+.navbar .sections{
+    display: none;
+}
 
-        width: auto;
-        font-size: 20px;
-        padding-left: 40px;
-        
-    }
-    .navbar .items{
+@media screen and (max-width:720px) {
+    .navbar .sectionf{
         display: none;
     }
+
+    .navbar .sections{
+        width: 80%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .navbar .sections .title{
+        margin: 0px;
+        width: auto;
+        font-size: 20px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        text-align: left;
+        padding: 0px;
+        font-family: "Roboto", sans-serif;
+        font-weight: 600;
+        font-style: normal;
+        font-size: 20px;
+        
+    }
+
+    .navbar .sections .outerbuttonsection{
+        height: auto;
+        width: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .navbar .sections .outerbuttonsection .smallnav{
+        outline: none;
+        border: 0px solid;
+        padding: 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+        aspect-ratio: 1/1;
+        cursor: pointer;
+    }
+
+    .navbar .sections .outerbuttonsection .profiledetails{
+        padding-top: 5px;
+        padding-bottom: 5px;
+        background-color: white;
+        position: absolute;
+        border: 0px solid;
+        border-bottom-left-radius: 15px;
+        width: 40vw;
+        height: auto;
+        top: 100%;
+        right: 0%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+
+    .navbar .sections .outerbuttonsection .profiledetails .item{
+                text-decoration: none;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                outline: none;
+                border: 0px;
+                height: auto;
+                width: auto;
+                background-color: transparent;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                margin-top: 5px;
+                margin-bottom: 5px;
+    }
+
+        .navbar .sections .outerbuttonsection .profiledetails .item .link{
+            font-size: 15px;
+            font-family: "Roboto", sans-serif;
+            font-weight: 500;
+            font-style: normal;
+            text-decoration: none;
+            color: black;
+            
+        }
+        .navbar .sections .outerbuttonsection .profiledetails .item .link:hover{
+                color: #259AFC;
+        }
+
 }
