@@ -9,6 +9,7 @@ import profile from './profile.avif';
 import user from './user.png';
 import man from './man.png';
 import woman from './woman.png'
-
-export {doctorImage,proto1,proto2,heartrate,thermo,ecg,spo2,profile,user,man,woman};
+import am1 from './am1.jpg'
+import am2 from './am2.jpg'
+export {doctorImage,proto1,proto2,heartrate,thermo,ecg,spo2,profile,user,man,woman,am1,am2};
 

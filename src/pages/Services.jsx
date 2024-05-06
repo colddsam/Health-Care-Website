@@ -1,5 +1,5 @@
 import React from 'react'
-import { ecg, heartrate, proto1, proto2, spo2, thermo } from '../assets/images/Image'
+import { ecg, heartrate, spo2, thermo,am1,am2 } from '../assets/images/Image'
 
 import '../styles/Services.css'
 const Services = () => {
@@ -26,8 +26,8 @@ const Services = () => {
   return (
     <div className='services'>
       <section className="imgproto">
-        <img className='proto' src={proto1} alt="proto1" />
-        <img className='proto' src={proto2} alt="proto2" />
+        <img className='proto' src={am1} alt="proto1" />
+        <img className='proto' src={am2} alt="proto2" />
       </section>
       <p className="description">
         Our device monitor various physical parameters like Blood Oxygen Level, Temperature, ECG, Heart Rate in real time through our sensors and according to the data it automatically provide the necessary pressure of oxygen if needed.
