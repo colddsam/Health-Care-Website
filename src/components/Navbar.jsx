@@ -5,7 +5,8 @@ import { user } from '../assets/images/Image';
 
 const Navbar = () => {
 
-  const [popup,setPopup]=useState(false);
+  const [popup, setPopup] = useState(false);
+  const [display, setDisplay] = useState(false);
 
   let navItems = {
     'About': '/home',
@@ -16,6 +17,9 @@ const Navbar = () => {
 
   const popUpCheck = () => {
     popup ? setPopup(false) : setPopup(true);
+    if (!display) {
+      setDisplay(true);
+    }
   }
 
   return (
@@ -37,15 +41,15 @@ const Navbar = () => {
           ROUBUSTA 6.0
         </div>
         <div className="outerbuttonsection">
-          {
-            popup?<ul className="profiledetails">
+          
+            <ul style={display?{display:'flex'}:{}} className={`profiledetails ${popup?"slide-in-right":"slide-out-right"}`}>
+            {/* <ul className={`profiledetails `}> */}
             {Object.entries(navItems).map(([text, link], index) => (
           <button key={index} className="item">
             <Link className='link' to={link}>{ text}</Link>
           </button>
         ))}
-          </ul>:''
-          }
+          </ul>
               <button className='smallnav' onClick={popUpCheck}>
           <img src={user} alt="user"/>
           </button>

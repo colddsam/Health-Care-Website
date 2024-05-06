@@ -39,6 +39,7 @@ const Register = () => {
                 loading?<PopUp/>:''
             }
             <form className='register_form' onSubmit={addUser}>
+                <label className='registerlabel'>Register</label>
                 <input type="text" id='name' value={name} className='register_det' placeholder='Enter Name' onChange={(e) => setName(e.target.value)} />
                 <input type="text" id='email' value={email} className='register_det' placeholder='Enter Email Address' onChange={(e) => setEmail(e.target.value)} />
                 <input type="text" id='number' value={ph} className='register_det' placeholder='Enter Phone Number' onChange={(e) => setPh(e.target.value)} />
