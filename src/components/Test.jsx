@@ -16,7 +16,7 @@ ChartJS.register(
   PointElement
 );
 
-const LineChart = ({time, data,text }) => {
+const Test = ({time, data,text }) => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const LineChart = ({time, data,text }) => {
       {
         label: text,
         data: datapoints,
-        borderColor: 'rgb(75, 192, 192)',
+        borderColor: Colors.red,
         fill: false,
         cubicInterpolationMode: 'monotone',
         tension: 0.4
@@ -53,17 +53,14 @@ const LineChart = ({time, data,text }) => {
     data: chartData,
     options: {
       responsive: true,
-        plugins: {
-        legend: {
-            display: false
-        },
+      plugins: {
         title: {
           display: true,
           text: 'Chart.js Line Chart - Cubic interpolation mode'
         },
       },
       interaction: {
-        intersect: true,
+        intersect: false,
       },
       scales: {
         x: {
@@ -86,17 +83,10 @@ const LineChart = ({time, data,text }) => {
   };
 
   return (
-      <div style={{
-          width: '80vw',
-          height: 'auto',
-          backgroundColor: 'aliceblue',
-          marginBottom: '20px',
-          border: '0px',
-          borderRadius:'10px'
-      }}>
+    <div style={{ width: '100vw', height: '100vh' }}>
       <Line data={chartData} options={config}></Line>
     </div>
   )
 }
 
-export default LineChart;
+export default Test;

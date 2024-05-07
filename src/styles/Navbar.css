@@ -131,6 +131,13 @@
         cursor: pointer;
     }
 
+        .navbar .sections .outerbuttonsection .smallnav .smallImg{
+            height: 100%;
+            width: 100%;
+            border: 0px solid;
+            border-radius: 50%;
+        }
+
     .navbar .sections .outerbuttonsection .profiledetails{
         padding-top: 5px;
         padding-bottom: 5px;

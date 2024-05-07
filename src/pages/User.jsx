@@ -1,12 +1,10 @@
 import React, { useEffect, useState,useMemo  } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import Chart,{ CategoryScale } from "chart.js/auto";
 import '../styles/User.css';
 import LineChart from '../components/LineChart';
 import { profile } from '../assets/images/Image';
 import PopUp from '../components/PopUp';
-Chart.register(CategoryScale);
 const apiUrl=process.env.REACT_APP_API_KEY
 const User = ({uid,setUid}) => {
     const { id } = useParams();
@@ -35,6 +33,7 @@ useEffect(() => {
     const fetchData = async () => {
         try {
             const dataResponse = await axios.get(`${apiUrl}/show/?_id=${id}`);
+            console.log(dataResponse.data)
             setData(dataResponse.data);
         } catch (error) {
             console.log("Error fetching user's health data:", error);

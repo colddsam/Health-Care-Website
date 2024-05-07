@@ -3,9 +3,8 @@ import '../styles/Navbar.css';
 import { Link } from 'react-router-dom';
 import { userImg } from '../assets/images/Image';
 
-const Navbar = ({id}) => {
+const Navbar = ({id,popup, setPopup}) => {
 
-  const [popup, setPopup] = useState(false);
   const [display, setDisplay] = useState(false);
 
   const navItems = id===''?{
@@ -55,7 +54,7 @@ const Navbar = ({id}) => {
         ))}
           </ul>
               <button className='smallnav' onClick={popUpCheck}>
-          <img src={userImg} alt="user"/>
+          <img className='smallImg' src={userImg} alt="user"/>
           </button>
 
         </div>
