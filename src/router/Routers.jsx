@@ -7,15 +7,15 @@ import Login from '../pages/Login'
 import Register from '../pages/Register'
 
 
-const Routers = () => {
+const Routers = ({setID,id}) => {
   return (
     <Routes>
       <Route path='/' element={<Navigate to="home" />}></Route>
       <Route path='/home' element={<LandingPage/>}></Route>
       <Route path='/services' element={<Services/>}></Route>
-      <Route path='/login' element={<Login/>}></Route>
+      <Route path='/login' element={<Login setID={setID}/>}></Route>
       <Route path='/register' element={<Register/>}></Route>
-      <Route path='/user/:id' element={<User/>}></Route>
+      <Route path='/user/:id' element={<User uid={id} setUid={setID}/>}></Route>
     </Routes>
   )
 }

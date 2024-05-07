@@ -1,18 +1,23 @@
 import React,{useState} from 'react';
 import '../styles/Navbar.css';
 import { Link } from 'react-router-dom';
-import { user } from '../assets/images/Image';
+import { userImg } from '../assets/images/Image';
 
-const Navbar = () => {
+const Navbar = ({id}) => {
 
   const [popup, setPopup] = useState(false);
   const [display, setDisplay] = useState(false);
 
-  let navItems = {
+  const navItems = id===''?{
     'About': '/home',
     'Services': '/services',
     'Log In': '/login',
     'Register': '/register'
+  } : {
+    'About': '/home',
+    'Services': '/services',
+    'Profile': `/user/${id}`,
+    'Log Out': '/login'
   };
 
   const popUpCheck = () => {
@@ -43,7 +48,6 @@ const Navbar = () => {
         <div className="outerbuttonsection">
           
             <ul style={display?{display:'flex'}:{}} className={`profiledetails ${popup?"slide-in-right":"slide-out-right"}`}>
-            {/* <ul className={`profiledetails `}> */}
             {Object.entries(navItems).map(([text, link], index) => (
           <button key={index} className="item">
             <Link className='link' to={link}>{ text}</Link>
@@ -51,7 +55,7 @@ const Navbar = () => {
         ))}
           </ul>
               <button className='smallnav' onClick={popUpCheck}>
-          <img src={user} alt="user"/>
+          <img src={userImg} alt="user"/>
           </button>
 
         </div>

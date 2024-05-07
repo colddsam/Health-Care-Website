@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useMemo  } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Chart,{ CategoryScale } from "chart.js/auto";
@@ -8,7 +8,7 @@ import { profile } from '../assets/images/Image';
 import PopUp from '../components/PopUp';
 Chart.register(CategoryScale);
 const apiUrl=process.env.REACT_APP_API_KEY
-const User = () => {
+const User = ({uid,setUid}) => {
     const { id } = useParams();
     const [data, setData] = useState(null);
     const [user, setUser] = useState(null);
@@ -17,6 +17,8 @@ const User = () => {
 
 
     useEffect(() => {
+        setUid(id);
+
         const fetchData = async () => {
             try {
                 const userResponse = await axios.get(`${apiUrl}/find/?_id=${id}`);
@@ -27,7 +29,7 @@ const User = () => {
         };
         fetchData();
         
-    }, [id]);
+    }, [id,setUid]);
 
 useEffect(() => {
     const fetchData = async () => {
@@ -48,19 +50,18 @@ useEffect(() => {
     const addDev = async () => {
         try {
             const response = await axios.post(`${apiUrl}/assign/?deviceid=${device}&clientid=${id}`);
-            console.log(JSON.stringify(response.data));
-            alert('Device Assigned');
         } catch (error) {
             console.log(error);
-            alert('Error occurred during device assign');
         }
     }
 
-    const name = user ? user.name : '';
-    const email = user ? user.email : '';
-    const phone = user ? user.phNo : '';
-    const age = user ? user.age : '';
-    const bloodGroup = user ? user.bloodGroup : '';
+    const memoizedUser = useMemo(() => user, [user]);
+
+    const name = memoizedUser ? memoizedUser.name : '';
+    const email = memoizedUser ? memoizedUser.email : '';
+    const phone = memoizedUser ? memoizedUser.phNo : '';
+    const age = memoizedUser ? memoizedUser.age : '';
+    const bloodGroup = memoizedUser ? memoizedUser.bloodGroup : '';
 
     const dates = data ? Object.values(data['Date Time']) : [];
     const bloodOxygen = data ? Object.values(data['Blood Oxygen']) : [];
