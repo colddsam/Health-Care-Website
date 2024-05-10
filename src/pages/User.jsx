@@ -67,6 +67,7 @@ useEffect(() => {
     const temperature = data ? Object.values(data['Temperature']) : [];
     const heartRate = data ? Object.values(data['Heart Rate']) : [];
     const ecgSignal = data ? Object.values(data['ECG Signal']) : [];
+    const stressLevel = data ? Object.values(data['Stress Level']) : [];
 
     return (
         <div className='user'>
@@ -97,6 +98,7 @@ useEffect(() => {
                 <LineChart time={dates} data={temperature} text='Temperature' />
                 <LineChart time={dates} data={heartRate} text='Heart Rate' />
                 <LineChart time={dates} data={ecgSignal} text='ECG Signal' />
+                <LineChart time={dates} data={stressLevel} text='Stress Level' />
             </section>
         </div>
     );
