@@ -11,8 +11,10 @@ const Register = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [ph, setPh] = useState('');
-    const [blood, setBlood] = useState('');
+    const [blood, setBlood] = useState('A');
     const [age, setAge] = useState('');
+    const [password, setPassword] = useState('');
+    const [gender, setGender] = useState('male');
     const [loading, setLoading] = useState(false);
 
     const addUser = async (e) => {
@@ -24,29 +26,77 @@ const Register = () => {
             email: email,
             phNo: ph,
             age: age,
-            bloodGroup: blood
+            bloodGroup: blood,
+            password: password,
+            gender:gender
         };
 
         try {
             const response = await axios.post(`${apiUrl}/adduser/`, userData);
             setLoading(false);
-            navigate(`/login`);
+            if (response.data) {
+                navigate(`/login`);
+            }
+            else {
+                alert("This email address and Password already exist")
+            }
         } catch (error) {
             console.error('Error adding user:', error);
             setLoading(false);
         }
     };
 
+    const togglePassword = () => {
+        let passwordDOM = document.getElementById('passwordBox')
+        if (passwordDOM.type === "password") {
+            passwordDOM.type="text"
+        }
+        else{
+            passwordDOM.type="password"
+        }
+    }
+
     return (
         <div className='register'>
             {loading && <PopUp />} 
             <form className='register_form' onSubmit={addUser}>
                 <label className='registerlabel'>Register</label>
-                <input type="text" id='name' value={name} className='register_det' placeholder='Enter Name' onChange={(e) => setName(e.target.value)} />
-                <input type="text" id='email' value={email} className='register_det' placeholder='Enter Email Address' onChange={(e) => setEmail(e.target.value)} />
-                <input type="text" id='number' value={ph} className='register_det' placeholder='Enter Phone Number' onChange={(e) => setPh(e.target.value)} />
-                <input type="text" id='age' value={age} className='register_det' placeholder='Enter Age' onChange={(e) => setAge(e.target.value)} />
-                <input type="text" id='blood' value={blood} className='register_det' placeholder='Enter Blood Group' onChange={(e) => setBlood(e.target.value)} />
+                <input type="email" id='email' value={email} className='register_det' placeholder='Enter Email Address' onChange={(e) => setEmail(e.target.value)} required/>
+                <input type="password" id='passwordBox' value={password} className='register_det' placeholder='Enter Password' onChange={(e) => setPassword(e.target.value)} required/>
+                
+                <div className="register_det" style={{height:'auto',  display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center',overflow:'hidden',boxSizing:'border-box'}}>
+                    
+                    <input type="checkbox" name="show password" className='register_det' style={{marginBottom:'0px',border: '0px', outline: 'none', width: '15px', height: '15px'}} onClick={togglePassword} id="show_password" placeholder='Show Password'/>
+                    
+                    <span style={{ fontSize: '14px', display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: 'auto',width:'auto', marginLeft:'5px',textAlign:'center'}}>show password</span>
+                </div>
+                
+                <hr style={{ width: '100%', height: '2px', backgroundColor: '#dfdfdf7b', border: '0px', outline: 'none', marginBottom: '20px' }} />
+                
+                <input type="text" id='name' value={name} className='register_det' placeholder='Enter Name' onChange={(e) => setName(e.target.value)}  required/>
+                
+                <input type="tel" id='number'  pattern="[0-9]{10}" value={ph} className='register_det' placeholder='Enter 10 digits Phone Number' onChange={(e) => setPh(e.target.value)}  required/>
+                
+                <input type="number" id='age' value={age} className='register_det' placeholder='Enter Age' onChange={(e) => setAge(e.target.value)} min={10} max={150}  required/>
+                
+                <div className="register_det" style={{display:'flex',flexDirection:'row',justifyContent:'flex-start',alignItems:'center'}}>
+                    <label for="bloodGroup" style={{height:'auto',fontSize:'14px',width:'auto',marginRight:'7px'}} >Blood Group </label>
+                    <select style={{width:'auto',height:'auto',border:'0px',outline:'none',backgroundColor:'white',padding:'5px',fontSize:'14px',borderRadius:'5px'}} name="blood" id="blood" value={blood} onChange={(e)=>setBlood(e.target.value)} required>
+                      <option value="A">A</option>
+                      <option value="B">B</option>
+                      <option value="AB">AB</option>
+                      <option value="O">O</option>
+                    </select>
+                </div>
+                 <div className="register_det" style={{display:'flex',flexDirection:'row',justifyContent:'flex-start',alignItems:'center'}}>
+                    <label for="gender" style={{height:'auto',fontSize:'14px',width:'auto',marginRight:'7px'}} >Gender </label>
+                    <select style={{ width: 'auto', height: 'auto', border: '0px', outline: 'none', backgroundColor: 'white', padding: '5px', fontSize: '14px', borderRadius: '5px' }} name="gender" id="gender" value={gender} onChange={(e) =>setGender(e.target.value)} required>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                      <option value="others">Others</option>
+                    </select>
+                </div>
+
                 <input type="submit" value="submit" className='register_submit' />
             </form>
         </div>

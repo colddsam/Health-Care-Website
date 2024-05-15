@@ -3,8 +3,6 @@ import '../styles/LandingPage.css'
 import {doctorImage} from '../assets/images/Image'
 import { Link } from 'react-router-dom'
 const LandingPage = () => {
-  console.log(window.innerHeight);
-  console.log(window.innerWidth);
   return (
     <div className='landing_page'>
         <section className="left">

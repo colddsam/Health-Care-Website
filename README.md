@@ -1,70 +1,42 @@
-# Getting Started with Create React App
+# Rural Health Monitoring and Emergency Ventilation System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Problem Statement
+Accessing city hospitals from rural areas during emergencies is challenging. Limited infrastructure and resources often result in delayed medical interventions, leading to adverse health outcomes. To address this issue, we aim to develop a comprehensive solution that provides immediate medical assistance and continuous monitoring for rural communities.
 
-## Available Scripts
+## Introduction
+In rural areas, accessing immediate healthcare can be a daunting task due to geographical constraints and inadequate medical facilities. Our project aims to bridge this gap by introducing a portable health monitoring and emergency ventilation system. By integrating cutting-edge technology with medical expertise, we aspire to ensure timely interventions and proactive healthcare management for individuals residing in remote regions.
 
-In the project directory, you can run:
+## Technical Stack
+### Hardware
+1. Microcontroller (Arduino Uno/Node MCU)
+2. Blood Oxygen Sensor (MAX30102)
+3. ECG Sensor (AD8232)
+4. DC Motor
+5. Motor Driver (L298N)
+6. Ambu Bag (Silicon Ventilator Bag)
 
-### `npm start`
+### Software
+1. FastAPI (Python)
+2. MongoDB
+3. Render Hosting Service
+4. ML Pipeline
+5. Google Cloud
+6. React JS
+7. SASS
+8. SMTP Protocol
+9. Arduino IDE
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Basic Workflow and Approach
+1. **Sensor Data Acquisition**: Sensors like MAX30102 and AD8232 connected to Arduino Nano collect vital parameters such as blood oxygen level, heart rate, body temperature, and ECG readings.
+2. **Emergency Ventilation**: The system triggers emergency oxygen supply automatically when blood oxygen levels drop below a certain threshold, ensuring immediate life-saving intervention.
+3. **Data Transmission**: Arduino Uno communicates with Node MCU via serial communication to transmit sensor data.
+4. **API Integration**: Node MCU fetches REST API data via secure HTTP method, built on FastAPI framework in Python, facilitating seamless data transfer and storage.
+5. **Data Storage**: Sensor data is stored in Google Sheets through the API, enabling easy access and analysis by healthcare providers.
+6. **User Profile Creation**: Users create profiles on the website, and their details are stored in MongoDB via the REST API for personalized healthcare management.
+7. **Authentication and Access**: Login credentials are shared with users via SMTP protocol, with HTML-formatted emails for visual appeal, ensuring secure access to their health records.
+8. **Data Visualization**: User profiles display health parameters using Chart.js, providing visual insights into their health status and trends.
+9. **Health Analytics**: Advanced analytics, including stress level calculation using XGBoost and noninvasive glucose level prediction through IR diodes, empower proactive disease management and prevention.
+10. **Deployment**: The entire software system is deployed on Render, a reliable hosting service, ensuring seamless accessibility and scalability for users.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Vision of the Project
+Our project's vision is to revolutionize rural healthcare delivery by leveraging technology to overcome geographical barriers and resource constraints. By providing immediate emergency support, continuous monitoring, and predictive healthcare analytics, we aim to empower rural communities with access to quality healthcare services. Through collaborative efforts and innovation, we aspire to create a healthier and more resilient society, where healthcare is accessible to all, irrespective of location or socioeconomic status.

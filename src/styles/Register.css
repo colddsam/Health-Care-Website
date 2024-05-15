@@ -1,5 +1,8 @@
 .register{
-    height: 100vh;
+    min-height: 100vh;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    height: auto;
         width: 100vw;
         background-color: white;
         display: flex;
@@ -14,7 +17,7 @@
     border-radius: 25px;
     margin-top: 50px;
     padding: 20px;
-    height: 400px;
+    height: auto;
     width: 400px;
     background-color: aliceblue;
     filter: drop-shadow(rgba(0, 0, 0, 0.2) 0px 0px 10px);
