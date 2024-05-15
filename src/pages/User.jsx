@@ -23,11 +23,22 @@ useEffect(() => {
         setUid(id);
 
     const fetchData = async () => {
-            try {
+        try {
+            if (localStorage.getItem('data')) {
+                setUser(JSON.parse(localStorage.getItem('data')))
+            }
+            else {
                 const userResponse = await axios.get(`${apiUrl}/find/?_id=${decodedString}`);
                 setUser(userResponse.data);
+                localStorage.setItem('data', JSON.stringify(userResponse.data));
+            }
             } catch (error) {
                 console.log("Error fetching user data:", error);
+                if (localStorage.getItem('data')) {
+                    setUser(JSON.parse(localStorage.getItem('data')))
+
+                }
+            
             }
         };
         fetchData();
@@ -37,10 +48,19 @@ useEffect(() => {
 useEffect(() => {
     const fetchData = async () => {
         try {
-            const dataResponse = await axios.get(`${apiUrl}/show/?_id=${decodedString}`);
-            setData(dataResponse.data);
+            if (navigator.onLine) {
+                const dataResponse = await axios.get(`${apiUrl}/show/?_id=${decodedString}`);
+                setData(dataResponse.data);
+                localStorage.setItem('stats', JSON.stringify(dataResponse.data));
+            }
+            else {
+                setData(JSON.parse(localStorage.getItem('stats')));
+            }
         } catch (error) {
             console.log("Error fetching user's health data:", error);
+            if (localStorage.getItem('stats')) {
+                setData(JSON.parse(localStorage.getItem('stats')))
+            }
         }
     };
 
