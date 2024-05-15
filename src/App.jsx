@@ -10,12 +10,15 @@ const App = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (localStorage.getItem('user')) {
+    if (id === '') {
+      if (localStorage.getItem('user')) {
         setID(localStorage.getItem('user'));
 
         navigate(`/user/${localStorage.getItem('user')}`);
     }
-  },[navigate])
+  }
+    
+  },[navigate,id])
   return (
     <div className='app' onClick={()=>popup?setPopup(false):{}}>
       <Navbar id={id} popup={popup} setPopup={setPopup} />

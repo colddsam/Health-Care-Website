@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useMemo  } from 'react';
+import React, { useEffect, useState  } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Buffer } from 'buffer';
@@ -9,7 +9,10 @@ import PopUp from '../components/PopUp';
 const apiUrl=process.env.REACT_APP_API_KEY
 const User = ({uid,setUid}) => {
     const { id } = useParams();
-    const [decodedString, setDecodedString] = useState('');
+    const [decodedString, setDecodedString] = useState(() => {
+                    const bufferObj = Buffer.from(id, "base64"); 
+            return bufferObj.toString("utf8"); 
+    });
     const [data, setData] = useState(null);
     const [user, setUser] = useState(null);
     const [device, setDevice] = useState('');
@@ -18,9 +21,8 @@ const User = ({uid,setUid}) => {
 
 useEffect(() => {
         setUid(id);
-        let bufferObj = Buffer.from(id, "base64"); 
-        setDecodedString(bufferObj.toString("utf8")); 
-        const fetchData = async () => {
+
+    const fetchData = async () => {
             try {
                 const userResponse = await axios.get(`${apiUrl}/find/?_id=${decodedString}`);
                 setUser(userResponse.data);
@@ -56,14 +58,15 @@ useEffect(() => {
         }
     }
 
-    const memoizedUser = useMemo(() => user, [user]);
 
-    const name = memoizedUser ? memoizedUser.name : '';
-    const email = memoizedUser ? memoizedUser.email : '';
-    const phone = memoizedUser ? memoizedUser.phNo : '';
-    const age = memoizedUser ? memoizedUser.age : '';
-    const bloodGroup = memoizedUser ? memoizedUser.bloodGroup : '';
-    const gender = memoizedUser ? memoizedUser.gender : '';
+    const name = user ? user.name : '';
+    const email = user ? user.email : '';
+    const phone = user ? user.phNo : '';
+    const age = user ? user.age : '';
+    const bloodGroup = user ? user.bloodGroup : '';
+    const gender = user ? user.gender : '';
+
+
 
     const dates = data ? Object.values(data['Date Time']) : [];
     const bloodOxygen = data ? Object.values(data['Blood Oxygen']) : [];
