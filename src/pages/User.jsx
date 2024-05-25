@@ -4,18 +4,17 @@ import { useParams } from 'react-router-dom';
 import { Buffer } from 'buffer';
 import '../styles/User.css';
 import LineChart from '../components/LineChart';
-import { profile } from '../assets/images/Image';
+import { man, profile, woman } from '../assets/images/Image';
 import PopUp from '../components/PopUp';
 const apiUrl=process.env.REACT_APP_API_KEY
 const User = ({uid,setUid}) => {
     const { id } = useParams();
-    const [decodedString, setDecodedString] = useState(() => {
+    const decodedString = (() => {
                     const bufferObj = Buffer.from(id, "base64"); 
             return bufferObj.toString("utf8"); 
-    });
+    })();
     const [data, setData] = useState(null);
     const [user, setUser] = useState(null);
-    const [device, setDevice] = useState('');
     const delayMS = 10000;
 
 
@@ -70,13 +69,7 @@ useEffect(() => {
 }, [decodedString]);
 
 
-    const addDev = async () => {
-        try {
-            await axios.post(`${apiUrl}/assign/?deviceid=${device}&clientid=${decodedString}`);
-        } catch (error) {
-            console.log(error);
-        }
-    }
+    
 
 
     const name = user ? user.name : '';
@@ -85,6 +78,8 @@ useEffect(() => {
     const age = user ? user.age : '';
     const bloodGroup = user ? user.bloodGroup : '';
     const gender = user ? user.gender : '';
+
+    
 
 
 
@@ -95,6 +90,14 @@ useEffect(() => {
     const ecgSignal = data ? Object.values(data['ECG Signal']) : [];
     const stressLevel = data ? Object.values(data['Stress Level']) : [];
 
+
+    let profileImg = profile;
+    if (gender === 'male') {
+        profileImg = man;
+    } else if (gender === 'female') {
+        profileImg = woman;
+    }
+
     return (
         <div className='user'>
             {
@@ -102,11 +105,11 @@ useEffect(() => {
             }
             <section className="profile_sec">
                 <div className="profile_image">
-                    <img className="img" src={profile} alt='profile' />
+                    <img className="img" src={profileImg} alt='profile' />
                 </div>
                 <div className="profile_details">
-                    <h1 className="profile_desc">Unique ID : {decodedString}</h1>
-                    <h1 className="profile_desc">Name : {name}</h1>
+                    <h2 className="profile_desc">Unique ID : {decodedString}</h2>
+                    <h2 className="profile_desc">Name : {name}</h2>
                     <h2 className="profile_desc">Email : {email}</h2>
                     <h2 className="profile_desc">Phone No : {phone}</h2>
                     <h2 className="profile_desc">Age : {age}</h2>
@@ -114,12 +117,7 @@ useEffect(() => {
                     <h2 className="profile_desc">Gender : {gender}</h2>
                 </div>
             </section>
-            <section className="toggle">
-                <form action="" className="toggle_section">
-                    <input type="text" className='toggle_text' placeholder='Add New Device ID' value={device} id='toggle_text' onChange={(e) => { setDevice(e.target.value) }} />
-                    <input type="submit" value='submit' className='toggle_submit' onClick={addDev} />
-                </form>
-            </section>
+
             <section className="chart">
                 <LineChart time={dates} data={bloodOxygen} text='Blood Oxygen' />
                 <LineChart time={dates} data={temperature} text='Temperature' />

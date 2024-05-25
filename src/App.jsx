@@ -13,8 +13,14 @@ const App = () => {
     if (id === '') {
       if (localStorage.getItem('user')) {
         setID(localStorage.getItem('user'));
+        if (localStorage.getItem('type') === 'P') {
+          navigate(`/user/${localStorage.getItem('user')}`);
+          
+        }
+        else if (localStorage.getItem('type') === 'D') {
+          navigate(`/doctor/${localStorage.getItem('user')}`);
+        }
 
-        navigate(`/user/${localStorage.getItem('user')}`);
     }
   }
     

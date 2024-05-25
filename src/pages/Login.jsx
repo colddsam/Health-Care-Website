@@ -13,7 +13,7 @@ const Login = ({ setID }) => {
     setID('');
     localStorage.clear();
   }, [setID]);
-  
+  const [swap, setSwap] = useState(true);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
@@ -31,10 +31,37 @@ const Login = ({ setID }) => {
         let base64String = bufferObj.toString("base64"); 
 
         localStorage.setItem('user', base64String);
+        localStorage.setItem('type', 'P');
         
         setID(base64String);
 
         navigate(`/user/${base64String}`);
+      } else {
+        alert('No user data found');
+      }
+    } catch (error) {
+      setLoading(false);
+      console.error("Error fetching user data:", error);
+    }
+  }
+
+  const doctorLogIn = async () => {
+    setLoading(true);
+    try {
+      
+      const userResponse = await axios.get(`${apiUrl}/finddoctor/?email=${email}&password=${password}`);
+      setLoading(false);
+      if (userResponse.data) {
+        let bufferObj = Buffer.from(String(userResponse.data), "utf8"); 
+  
+        let base64String = bufferObj.toString("base64"); 
+
+        localStorage.setItem('user', base64String);
+        localStorage.setItem('type', 'D');
+        
+        setID(base64String);
+
+        navigate(`/doctor/${base64String}`);
       } else {
         alert('No user data found');
       }
@@ -56,8 +83,23 @@ const Login = ({ setID }) => {
     
     <div className='login'>
         {loading && <PopUp />}
-      <form className='form' onSubmit={(e) => { e.preventDefault(); profileLogIn(); }}>
+      <form className='form' onSubmit={(e) => {
+        e.preventDefault();
+        swap?profileLogIn():doctorLogIn();
+      }}>
         <label className='loginlabel' htmlFor="userid">Login</label>
+        <div className="modeswap">
+          <button className='modeapp' style={swap ? { backgroundColor: '#5cb6ff' } : { backgroundColor: 'white' }} onClick={() => {
+            setSwap(true);
+            setEmail('');
+            setPassword('');
+          }}>Patient</button>
+          <button className='modeapp' style={swap ? { backgroundColor: 'white' } : { backgroundColor: '#5cb6ff' }} onClick={() => {
+            setSwap(false)
+            setEmail('');
+            setPassword('');
+          }}>Doctor</button>
+                </div>
         <input type="email" id='email' value={email} className='entry' placeholder='Enter Email Address' onChange={(e) => setEmail(e.target.value)} required/>
                 <input type="password" id='passwordBox' value={password} className='entry' placeholder='Enter Password' onChange={(e) => setPassword(e.target.value)} required />
                 <div className="entry" style={{backgroundColor:'transparent',height:'auto',  display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center',overflow:'hidden',boxSizing:'border-box'}}>

@@ -5,6 +5,9 @@ import Services from '../pages/Services'
 import User from '../pages/User'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
+import Doctor from '../pages/Doctor'
+import UserProfile from '../pages/UserProfile'
+import AssignPopup from '../pages/AssignPopup'
 
 
 const Routers = ({setID,id}) => {
@@ -16,6 +19,9 @@ const Routers = ({setID,id}) => {
       <Route path='/login' element={<Login setID={setID}/>}></Route>
       <Route path='/register' element={<Register/>}></Route>
       <Route path='/user/:id' element={<User uid={id} setUid={setID}/>}></Route>
+      <Route path='/doctor/:id' element={<Doctor uid={id} setUid={setID} />}></Route>
+      <Route path='/patient' element={<UserProfile />}></Route>
+      <Route path='/assign' element={<AssignPopup/>}></Route>
     </Routes>
   )
 }

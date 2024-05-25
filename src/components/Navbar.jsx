@@ -1,11 +1,13 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import '../styles/Navbar.css';
 import { Link } from 'react-router-dom';
-import { userImg } from '../assets/images/Image';
+import { man, userImg, woman } from '../assets/images/Image';
 
 const Navbar = ({id,popup, setPopup}) => {
 
   const [display, setDisplay] = useState(false);
+  const [profile, setProfile] = useState(userImg);
+
 
   const navItems = id===''?{
     'About': '/home',
@@ -15,9 +17,26 @@ const Navbar = ({id,popup, setPopup}) => {
   } : {
     'About': '/home',
     'Services': '/services',
-    'Profile': `/user/${id}`,
+    'Profile': `/${localStorage.getItem('type')==='P'?'user':'doctor'}/${id}`,
     'Log Out': '/login'
   };
+
+  useEffect(() => {
+    const data=JSON.parse(localStorage.getItem('data'))
+
+    if (data) {
+      if (data.gender === 'male') {
+        setProfile(man);
+      } else if (data.gender === 'female') {
+        setProfile(woman);
+      } else {
+        setProfile(userImg);
+      }
+    } else {
+      setProfile(userImg);
+    }
+  
+}, []);
 
   const popUpCheck = () => {
     popup ? setPopup(false) : setPopup(true);
@@ -54,7 +73,7 @@ const Navbar = ({id,popup, setPopup}) => {
         ))}
           </ul>
               <button className='smallnav' onClick={popUpCheck}>
-          <img className='smallImg' src={userImg} alt="user"/>
+          <img className='smallImg' src={profile} alt="user"/>
           </button>
 
         </div>

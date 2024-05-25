@@ -86,13 +86,14 @@ const LineChart = ({time, data,text }) => {
 
   return (
       <div style={{
-          width: '80vw',
+          width: '100%',
           height: 'auto',
           backgroundColor: 'aliceblue',
           marginBottom: '20px',
           border: '0px',
           borderRadius:'10px'
-      }}>
+    }}>
+      <h4 className="label" >{text}</h4>
       <Line data={chartData} options={config}></Line>
     </div>
   )
