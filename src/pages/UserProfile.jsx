@@ -17,7 +17,6 @@ const UserProfile = () => {
     const id = location.state?.id
     const doc = (() => {
         const bufferObj = Buffer.from(location.state?.doc, "base64"); 
-        console.log(bufferObj.toString("utf8"))
         return bufferObj.toString("utf8"); 
     })();
     const navigate = useNavigate();
@@ -89,11 +88,8 @@ useEffect(() => {
     try {
 
         setLoading(true);
-        console.log('doc:'+doc);
-        console.log('device:' + id);
-        console.log('pat: ',pat)
+
       const res = await axios.post(`${apiUrl}/patient/?doctorid=${doc}&patientid=${0}&deviceid=${id}`)
-      console.log(res)
       setLoading(false);
       if (res.data) {
         alert('device removed');

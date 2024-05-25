@@ -23,7 +23,6 @@ const AssignPopup = () => {
 
     setLoading(true);
       const res = await axios.post(`${apiUrl}/patient/?doctorid=${doc}&patientid=${patient}&deviceid=${id}`)
-      console.log(res)
       setLoading(false);
       if (res.data) {
         alert('device assigned to patient successfully');
