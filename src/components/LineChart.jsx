@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
+import '../styles/LineChart.css';
 import {
   Chart as ChartJS,
   LineElement,
@@ -85,16 +86,9 @@ const LineChart = ({time, data,text }) => {
   };
 
   return (
-      <div style={{
-          width: '100%',
-          height: 'auto',
-          backgroundColor: 'aliceblue',
-          marginBottom: '20px',
-          border: '0px',
-          borderRadius:'10px'
-    }}>
+      <div className='lineOut'>
       <h4 className="label" >{text}</h4>
-      <Line data={chartData} options={config}></Line>
+      <Line className='line' data={chartData} options={config} ></Line>
     </div>
   )
 }
