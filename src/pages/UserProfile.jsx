@@ -15,7 +15,7 @@ const UserProfile = () => {
     const location = useLocation();
     const pat = location.state?.pat
     const id = location.state?.id
-    const doc = (() => {
+    const doc = (()  => {  
         const bufferObj = Buffer.from(location.state?.doc, "base64"); 
         return bufferObj.toString("utf8"); 
     })();

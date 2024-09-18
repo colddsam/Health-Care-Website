@@ -15,7 +15,10 @@ const User = ({uid,setUid}) => {
     return bufferObj.toString("utf8"); 
     })();
     const [user, setUser] = useState(null);
+    const [devices,setDevices]=useState(null);
     const navigate = useNavigate();
+    const delayMS = 5000;
+    
 
 
 useEffect(() => {
@@ -40,11 +43,40 @@ useEffect(() => {
                 }
             
             }
+            finally{
+                if (user && user.devices) {
+                    setDevices(user.devices);
+                } else {
+                    setDevices(null); 
+                }
+            }
 
         };
         fetchData();
         
     },[decodedString,id,setUid]);
+
+useEffect(()=>{
+    const fetchData = async () => {
+        try {
+            if (navigator.onLine && decodedString) {
+                const dataResponse = await axios.get(`${apiUrl}/getdevices/?_id=${decodedString}`);
+                setDevices(dataResponse.data);
+            }
+            else {
+                setDevices(null);
+            }
+        } catch (error) {
+            console.log("Error fetching user's health data:", error);
+        }
+    };
+    if (decodedString) {
+        
+    }
+    const interval = setInterval(fetchData, delayMS);
+    
+    return () => clearInterval(interval);
+},[decodedString])
 
     
 
@@ -91,8 +123,8 @@ useEffect(() => {
             <section className="device_section">
                 <ul className="devices">
                     {
-                        user && user.devices ? (
-                            Object.entries(user.devices).map(([key, value]) => {
+                        user && devices ? (
+                            Object.entries(devices).map(([key, value]) => {
                                 return (
                                     <li className="device"  onClick={() => {
                                         if (value) {
