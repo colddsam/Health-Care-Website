@@ -12,11 +12,13 @@ const Navbar = ({id,popup, setPopup}) => {
   const navItems = id===''?{
     'About': '/home',
     'Services': '/services',
+    'Vision': '/vision',
     'Log In': '/login',
     'Register': '/register'
   } : {
     'About': '/home',
     'Services': '/services',
+    'Vision': '/vision',
     'Profile': `/${localStorage.getItem('type')==='P'?'user':'doctor'}/${id}`,
     'Log Out': '/login'
   };
@@ -49,7 +51,7 @@ const Navbar = ({id,popup, setPopup}) => {
     <div className='navbar'>
       <div className="sectionf">
       <div className="title">
-        ROUBUSTA 6.0
+        ROBOBYTE 4.0
       </div>
       <ul className="items">
         {Object.entries(navItems).map(([text, link], index) => (
@@ -61,7 +63,7 @@ const Navbar = ({id,popup, setPopup}) => {
       </div>
       <div className="sections">
         <div className="title">
-          ROUBUSTA 6.0
+          ROBOBYTE 4.0
         </div>
         <div className="outerbuttonsection">
           

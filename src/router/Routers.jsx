@@ -8,6 +8,7 @@ import Register from '../pages/Register'
 import Doctor from '../pages/Doctor'
 import UserProfile from '../pages/UserProfile'
 import AssignPopup from '../pages/AssignPopup'
+import Vision from '../pages/Vision'
 
 
 const Routers = ({setID,id}) => {
@@ -16,6 +17,7 @@ const Routers = ({setID,id}) => {
       <Route path='/' element={<Navigate to="home" />}></Route>
       <Route path='/home' element={<LandingPage/>}></Route>
       <Route path='/services' element={<Services/>}></Route>
+      <Route path='/vision' element={<Vision/>}></Route>
       <Route path='/login' element={<Login setID={setID}/>}></Route>
       <Route path='/register' element={<Register/>}></Route>
       <Route path='/user/:id' element={<User uid={id} setUid={setID}/>}></Route>
