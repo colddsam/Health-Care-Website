@@ -32,6 +32,8 @@ const UserProfile = () => {
     const heartRate = data ? Object.values(data['Heart Rate']) : [];
     const ecgSignal = data ? Object.values(data['ECG Signal']) : [];
     const stressLevel = data ? Object.values(data['Stress Level']) : [];
+    const sbp = data ? Object.values(data['SBP']) : [];
+    const dbp = data ? Object.values(data['DBP']) : [];
 
     const name = user ? user.name : '';
     const email = user ? user.email : '';
@@ -155,6 +157,8 @@ useEffect(() => {
                         <LineChart time={dates} data={heartRate} text='Heart Rate' />
                         <LineChart time={dates} data={ecgSignal} text='ECG Signal' />
                         <LineChart time={dates} data={stressLevel} text='Stress Level' />
+                        <LineChart time={dates} data={sbp} text='SBP' />
+                        <LineChart time={dates} data={dbp} text='DBP' />
                         </div>
                   </div>
                   <div className="opt">

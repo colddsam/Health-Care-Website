@@ -48,7 +48,7 @@ const AssignPopup = () => {
       
           <div className="card">
               <div className="id">
-                  100
+                  {id}
               </div>
         <form className='form' onSubmit={(e) => {
                 e.preventDefault();
