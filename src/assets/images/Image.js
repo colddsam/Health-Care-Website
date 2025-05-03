@@ -5,7 +5,7 @@ import thermo from './thermo.png';
 import spo2 from './spo2.png';
 import heartrate from './heartrate.png';
 import ecg from './ecg.png';
-import profile from './profile.avif';
+import profile from './profile.jpg';
 import userImg from './user.png';
 import man from './man.png';
 import woman from './woman.png'
